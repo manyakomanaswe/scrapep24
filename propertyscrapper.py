@@ -9,7 +9,7 @@ def scrape(area: str, area_code: int, filepath:str) -> IO[str]:
     Function to scrape Property24 data.
 
     Parameters:
-    - area (str): The name of the suburb, found on the link after searching for a suburb on property24.com.
+    - area (str): The name of the suburb or area, found on the link after searching for a suburb on property24.com.
     - area_code (int): The area code is found on the link after searching for a suburb.
     - filename (str): filepath with filename to save the scarpped data. The filename should be csv. 
 
@@ -78,3 +78,7 @@ def scrape(area: str, area_code: int, filepath:str) -> IO[str]:
 
 
 scrape('mooikloof-ridge',10834,'pretoria_east_property_data.csv')
+scrape('mooikloof',10,'pretoria_east_property_data.csv')
+scrape('the-wilds',10444,'pretoria_east_property_data.csv')
+scrape('pretoriuspark',162,'pretoria_east_property_data.csv')
+scrape('olympus-ah',12201,'pretoria_east_property_data.csv')
