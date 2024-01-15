@@ -1,12 +1,25 @@
-import csv                  
+import csv   
+from typing import IO               
 import requests
 from bs4 import BeautifulSoup
 
-def scrape(area, filename):
-    count = 1  
-    base_url = f"https://www.property24.com/for-sale/{area}/pretoria/gauteng/10834"
 
-    with open(filename, mode='w', newline='',encoding= 'utf-8') as csv_file:
+def scrape(area: str, area_code: int, filepath:str) -> IO[str]:
+    """
+    Function to scrape Property24 data.
+
+    Parameters:
+    - area (str): The name of the suburb, found on the link after searching for a suburb on property24.com.
+    - area_code (int): The area code is found on the link after searching for a suburb.
+    - filename (str): filepath with filename to save the scarpped data. The filename should be csv. 
+
+    Returns:
+    A csv file with the scrapped data at the path specified.
+    """
+    count = 1  
+    base_url = f"https://www.property24.com/for-sale/{area}/pretoria/gauteng/{area_code}"
+
+    with open(filepath, mode='w', newline='',encoding= 'utf-8') as csv_file:
         variables = ['location','bedrooms','bathrooms','parking','size','price']
         writer = csv.DictWriter(csv_file, fieldnames=variables)
 
@@ -64,4 +77,4 @@ def scrape(area, filename):
                 count += 1  
 
 
-scrape('mooikloof-ridge','pretoria_east_property_data.csv')
+scrape('mooikloof-ridge',10834,'pretoria_east_property_data.csv')
