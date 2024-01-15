@@ -19,11 +19,12 @@ def scrape(area: str, area_code: int, filepath:str) -> IO[str]:
     count = 1  
     base_url = f"https://www.property24.com/for-sale/{area}/pretoria/gauteng/{area_code}"
 
-    with open(filepath, mode='w', newline='',encoding= 'utf-8') as csv_file:
+    with open(filepath, mode='a', newline='',encoding= 'utf-8') as csv_file:
         variables = ['location','bedrooms','bathrooms','parking','size','price']
         writer = csv.DictWriter(csv_file, fieldnames=variables)
 
-        writer.writeheader()
+        if csv_file.tell()==0:
+            writer.writeheader()
        
         while True:
             if count == 1:
